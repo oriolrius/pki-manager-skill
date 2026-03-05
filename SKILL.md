@@ -28,6 +28,8 @@ PKI_CLIENT_SECRET=your-client-secret
 EOF
 ```
 
+> **Important:** The API URL must include `/v1` at the end (e.g., `https://pki.example.com/api/v1`). Using just `/api` will cause parsing errors.
+
 ### Running the CLI
 
 Use `uvx` to run the CLI directly from the GitHub repository:
@@ -103,6 +105,12 @@ pki cert issue --ca <CA_ID> --cn "myserver.example.com" --type server \
     --dns "www.example.com" --dns "api.example.com" \
     --ip "192.168.1.100" \
     --validity 365 --algorithm RSA-2048
+
+# Issue client certificate
+pki cert issue --ca <CA_ID> --cn "user@example.com" --type client
+
+# Issue email certificate (requires email SANs via API)
+pki cert issue --ca <CA_ID> --cn "user@example.com" --type email
 
 # Renew a certificate
 pki cert renew <CERT_ID>
