@@ -99,9 +99,14 @@ You can also invoke the skill manually using:
 - [uv](https://docs.astral.sh/uv/) or [uvx](https://docs.astral.sh/uv/guides/tools/) for running the CLI
 - PKI Manager API access with OIDC credentials
 
-## Related Documentation
+## Related Projects
 
-- [PKI Manager CLI](https://github.com/oriolrius/pki-manager-cli)
-- [PKI Manager Web](https://github.com/oriolrius/pki-manager-web)
-- [PKI Manager Ansible Role](https://github.com/oriolrius/pki-manager-role)
+| Project | Description |
+|---------|-------------|
+| [PKI Manager](https://github.com/oriolrius/pki-manager-web) | Main PKI Manager web application |
+| [PKI Manager CLI](https://github.com/oriolrius/pki-manager-cli) | Python CLI tool for PKI Manager |
+| [PKI Manager Ansible](https://github.com/oriolrius/pki-manager-ansible) | Ansible Collection for certificate management ([Galaxy](https://galaxy.ansible.com/ui/repo/published/oriolrius/pki_manager/)) |
+
+## Additional Resources
+
 - [Claude Code Skills Documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
