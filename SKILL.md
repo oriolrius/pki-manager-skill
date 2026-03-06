@@ -130,7 +130,7 @@ pki cert download <CERT_ID> -f jks -p secret     # Java KeyStore
 pki cert download <CERT_ID> -o mycert.pem        # Custom output file
 ```
 
-**Certificate Types:** `server`, `client`, `email`, `code_signing`
+**Certificate Types:** `server`, `client`, `dual`, `email`, `code_signing`
 **Download Formats:** `pem`, `der`, `pkcs12`, `jks`
 
 ### Dashboard & Search
