@@ -35,7 +35,9 @@ Other ways:
 
 - Debian/Ubuntu: `sudo apt install ./pki-cli_<version>_<arch>.deb` (`amd64`, `i386`, `arm64`, `armhf`).
 - Fedora/RHEL: `sudo rpm -i pki-cli-<version>-1.<arch>.rpm` (`x86_64`, `i686`, `aarch64`, `armv7hl`).
-- Windows x86-64: unzip `pki-cli-<version>-x86_64-pc-windows-msvc.zip` and put `pki.exe` on the `PATH`.
+- Windows x86-64: download `pki.exe` from the release (1.0.1 and later) and put it on the `PATH`,
+  or unzip `pki-cli-<version>-x86_64-pc-windows-msvc.zip`.
+  PowerShell: `Invoke-WebRequest https://github.com/oriolrius/pki-manager-cli/releases/latest/download/pki.exe -OutFile pki.exe`.
 - From source (Rust 1.88+): `cargo install --locked --git https://github.com/oriolrius/pki-manager-cli`.
 - The last Python version (0.5.0) runs with
   `uvx --from "git+https://github.com/oriolrius/pki-manager-cli.git@v0.5.0" pki`.
