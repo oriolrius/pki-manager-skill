@@ -16,12 +16,13 @@ Check first: `pki --version`. If `pki` is not on the `PATH`, install a release b
 <https://github.com/oriolrius/pki-manager-cli/releases>.
 
 ```bash
-# Linux: download the archive for this machine and install the binary
+# Linux or macOS: download the archive for this machine and install the binary
 case "$(uname -s)-$(uname -m)" in
   Linux-x86_64)        T=x86_64-unknown-linux-musl ;;
   Linux-i?86)          T=i686-unknown-linux-musl ;;
   Linux-aarch64)       T=aarch64-unknown-linux-musl ;;
   Linux-armv7l)        T=armv7-unknown-linux-musleabihf ;;
+  Darwin-arm64)        T=aarch64-apple-darwin ;;
   *) echo "no release binary for $(uname -sm)"; exit 1 ;;
 esac
 V=$(curl -fsSL https://api.github.com/repos/oriolrius/pki-manager-cli/releases/latest | jq -r .tag_name)
@@ -36,7 +37,6 @@ Other ways:
 - Fedora/RHEL: `sudo rpm -i pki-cli-<version>-1.<arch>.rpm` (`x86_64`, `i686`, `aarch64`, `armv7hl`).
 - Windows x86-64: unzip `pki-cli-<version>-x86_64-pc-windows-msvc.zip` and put `pki.exe` on the `PATH`.
 - From source (Rust 1.88+): `cargo install --locked --git https://github.com/oriolrius/pki-manager-cli`.
-  There is no macOS package; on macOS, use this (not tested).
 - The last Python version (0.5.0) runs with
   `uvx --from "git+https://github.com/oriolrius/pki-manager-cli.git@v0.5.0" pki`.
   Use it only when no release binary is available. Do not use `uvx` without `@v0.5.0`:
