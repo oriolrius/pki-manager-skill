@@ -132,8 +132,8 @@ pki cert delete <CERT_ID> -f
 ```
 
 - Delete works only for a revoked certificate, or one expired for more than 90 days.
-- The server cannot delete the original of a renewed certificate
-  (`FOREIGN KEY constraint failed`). Delete the renewed one first, or keep both.
+- Before PKI Manager 3.19.1 the server cannot delete the original of a renewed certificate
+  (`FOREIGN KEY constraint failed`); 3.19.1 deletes it and keeps the renewal.
 
 - Types: `server`, `client`, `dual`, `email`, `code_signing`.
 - Key algorithms: `RSA-2048`, `RSA-4096`, `ECDSA-P256`, `ECDSA-P384`.
@@ -145,7 +145,7 @@ pki cert delete <CERT_ID> -f
 ```bash
 pki cert download <CERT_ID>                              # PEM certificate, server file name
 pki cert download <CERT_ID> -o cert.pem
-pki cert download <CERT_ID> -f full-pem -o fullchain.pem # certificate + issuing chain
+pki cert download <CERT_ID> -f chain-pem -o fullchain.pem # certificate + issuing CA (server 3.19.1+)
 pki cert download <CERT_ID> -f key-pem -o key.pem        # private key (PKCS#8 PEM)
 pki cert download <CERT_ID> -f pkcs12 -p secret -o cert.p12
 pki cert download <CERT_ID> -f jks -p changeit -o keystore.jks
@@ -155,6 +155,11 @@ Formats: `pem`, `der`, `chain-pem`, `full-pem`, `full-der`, `csr-pem`, `key-pem`
 `pkcs8-pem`, `pkcs8-der`, `pkcs8-encrypted`, `p12`/`pfx` (alias `pkcs12`), `jks-keystore`
 (alias `jks`), `jks-truststore`. `p12`, `pfx`, `jks-*` and `pkcs8-encrypted` need `-p`.
 `--encrypt-key` encrypts an exported key with `-p`; `--no-chain` removes the chain from a bundle.
+
+- `chain-pem`: certificate + issuing CA. `full-pem`: certificate + **private key** + issuing CA.
+  Never use `full-pem` as a certificate file that others can read.
+- On a PKI Manager 3.19.0 server, `chain-pem` has only the certificate and `full-pem` has no CA:
+  append the CA yourself (`pki ca pem <CA_ID>`).
 
 ## CRLs
 
@@ -238,7 +243,7 @@ done
 ### Files for Nginx
 
 ```bash
-pki cert download <CERT_ID> -f full-pem -o /etc/nginx/ssl/mysite.crt
+pki cert download <CERT_ID> -f chain-pem -o /etc/nginx/ssl/mysite.crt  # cert + CA (3.19.1+)
 pki cert download <CERT_ID> -f key-pem  -o /etc/nginx/ssl/mysite.key
 ```
 
@@ -275,7 +280,7 @@ pki cert download <CERT_ID> -f jks -p changeit -o /opt/app/keystore.jks
 | CA certificate | `pki ca pem <id> -o ca.pem` |
 | List certificates | `pki cert list` |
 | Issue | `pki cert issue --ca <id> --cn "host.example.com" --type server` |
-| Download | `pki cert download <id> -f full-pem` |
+| Download | `pki cert download <id> -f chain-pem` |
 | Renew | `pki cert renew <id>` |
 | Revoke | `pki cert revoke <id> --reason <reason> -f` |
 | New CRL | `pki crl generate <ca-id>` |
