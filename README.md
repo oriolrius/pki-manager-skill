@@ -96,7 +96,7 @@ You can also invoke the skill manually using:
 ## Requirements
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed
-- [uv](https://docs.astral.sh/uv/) or [uvx](https://docs.astral.sh/uv/guides/tools/) for running the CLI
+- The `pki` binary, version 1.0.0 or later (`SKILL.md` has the install commands)
 - PKI Manager API access with OIDC credentials
 
 ## Related Projects
@@ -104,7 +104,7 @@ You can also invoke the skill manually using:
 | Project | Description |
 |---------|-------------|
 | [PKI Manager](https://github.com/oriolrius/pki-manager-web) | Main PKI Manager web application |
-| [PKI Manager CLI](https://github.com/oriolrius/pki-manager-cli) | Python CLI tool for PKI Manager |
+| [PKI Manager CLI](https://github.com/oriolrius/pki-manager-cli) | CLI tool for PKI Manager (Rust, one static binary) |
 | [PKI Manager Ansible](https://github.com/oriolrius/pki-manager-ansible) | Ansible Collection for certificate management ([Galaxy](https://galaxy.ansible.com/ui/repo/published/oriolrius/pki_manager/)) |
 
 ## Additional Resources
